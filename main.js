@@ -1,5 +1,7 @@
 const section = document.getElementById('section')
 const restart = document.getElementById('restart')
+const timer = document.getElementById('timer')
+
 const data = [
     {imgSrc: "./images/1.jpg", id: 1},
     {imgSrc: "./images/2.jpg", id: 2},
@@ -18,6 +20,32 @@ const data = [
     {imgSrc: "./images/7.jpg", id: 7},
     {imgSrc: "./images/8.jpg", id: 8}
 ]
+
+let currentTime = 20;
+
+
+
+function updateTimer() {
+    const distance = currentTime - 1;
+    currentTime = distance
+    timer.innerHTML = distance
+    if(distance < 0){
+        clearInterval(interval);
+        timer.innerHTML = "Game Over!"
+        timer.style.color = 'red'
+    }
+}
+
+
+
+const interval =  setInterval('updateTimer()', 1000)
+
+
+// const targetTime = 0;
+// setInterval(() => {
+//     // const seconds = Math.floor((distance % (1000 *60)) /1000);
+//     console.log('interval')
+// }, 1000);
 
 function getRandomItems() {
     const cardData = data 
@@ -88,4 +116,5 @@ const restartTheGame = () => {
 restart.addEventListener(("click"), ()=> {
     restartTheGame()
 })
+
 

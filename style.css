@@ -29,14 +29,25 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateY(-50%) translateX(-50%);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
-    max-width: fit-content;
     margin: auto;
+}
+.gameInfo {
+    color: black;
+    position: absolute;
+    top: -45px;
+    left: 0px;
+    /* transform: translateX(-50%); */
+    width: 100%;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .card {
     position: relative;
@@ -45,8 +56,8 @@ a {
     cursor: pointer;
 }
 .image {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border: 3px solid white;
     pointer-events: none;
@@ -67,8 +78,16 @@ a {
 }
 .restart {
     width: 25px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+    body {
+      background: rgb(34,193,195);;
+    }
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        margin-top: 17rem;
+    }
+  }
