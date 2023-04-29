@@ -1,6 +1,13 @@
 const section = document.getElementById('section')
 const restart = document.getElementById('restart')
 const timer = document.getElementById('timer')
+const play = document.createElement('img')
+
+const createPlayBtn = () => {
+    play.src = './images/play.svg'
+    timer.appendChild(play)
+    play.classList = 'play'
+}
 
 const data = [
     {imgSrc: "./images/1.jpg", id: 1},
@@ -22,36 +29,32 @@ const data = [
 ]
 
 let currentTime = 20;
-
-
-
 function updateTimer() {
-    const distance = currentTime - 1;
-    currentTime = distance
-    timer.innerHTML = distance
-    if(distance < 0){
-        clearInterval(interval);
-        timer.innerHTML = "Game Over!"
-        timer.style.color = 'red'
-    }
+    const interval =  setInterval(()=>{
+        const distance = currentTime - 1;
+        currentTime = distance
+        timer.innerHTML = distance
+        if(distance < 0){
+            clearInterval(interval);
+            timer.innerHTML = "Game Over!"
+            timer.style.color = 'red'
+            section.style.pointerEvents = 'none'
+        }
+    }, 1000)
 }
 
-
-
-const interval =  setInterval('updateTimer()', 1000)
-
-
-// const targetTime = 0;
-// setInterval(() => {
-//     // const seconds = Math.floor((distance % (1000 *60)) /1000);
-//     console.log('interval')
-// }, 1000);
+play.addEventListener(("click"), () => {
+    updateTimer()
+    section.style.pointerEvents = 'all'
+})
 
 function getRandomItems() {
+    createPlayBtn()
     const cardData = data 
     cardData.sort(() => Math.random() - 0.5)
     return cardData
 }
+
 
 const randomData = getRandomItems();
 randomData.forEach((img)=>{
@@ -99,6 +102,11 @@ const checkCards = (e) => {
 }
 
 const restartTheGame = () => {
+    timer.innerHTML = ""
+    timer.style.color = 'black'
+    currentTime = 20
+    createPlayBtn()
+    section.style.pointerEvents = 'none'
     let cardData = getRandomItems();
     let cards = document.querySelectorAll('.card')
     let backs = document.querySelectorAll('.back')

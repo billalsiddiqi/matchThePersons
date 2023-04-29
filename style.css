@@ -36,18 +36,23 @@ a {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     margin: auto;
+    pointer-events: none;
 }
 .gameInfo {
     color: black;
     position: absolute;
-    top: -45px;
-    left: 0px;
-    /* transform: translateX(-50%); */
-    width: 100%;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+    /* width: 30%; */
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.play {
+    width: 18px;
+    margin-right: 20px;
 }
 .card {
     position: relative;
@@ -79,6 +84,7 @@ a {
 .restart {
     width: 25px;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 @media screen and (max-width: 767px) {
