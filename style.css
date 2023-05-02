@@ -53,6 +53,7 @@ a {
 .play {
     width: 18px;
     margin-right: 20px;
+    cursor: pointer;
 }
 .card {
     position: relative;

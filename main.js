@@ -28,7 +28,7 @@ const data = [
     {imgSrc: "./images/8.jpg", id: 8}
 ]
 
-let currentTime = 20;
+let currentTime = 25;
 function updateTimer() {
     const interval =  setInterval(()=>{
         const distance = currentTime - 1;
@@ -41,6 +41,31 @@ function updateTimer() {
             section.style.pointerEvents = 'none'
         }
     }, 1000)
+
+    const restartTheGame = () => {
+        clearInterval(interval);
+        timer.innerHTML = ""
+        timer.style.color = 'black'
+        currentTime = 25
+        section.style.pointerEvents = 'none'
+        let cardData = getRandomItems();
+        let cards = document.querySelectorAll('.card')
+        let backs = document.querySelectorAll('.back')
+        const imageData = document.querySelectorAll('.image')
+    
+        cardData.forEach((item, index) => {
+            backs[index].classList.remove('toggleBack');
+            cards[index].id = item.id
+            imageData[index].src = item.imgSrc;
+            cards[index].style.pointerEvents = "inherit"
+        })
+        
+    }
+    
+    restart.addEventListener(("click"), ()=> {
+        restartTheGame()
+    })
+
 }
 
 play.addEventListener(("click"), () => {
@@ -101,28 +126,6 @@ const checkCards = (e) => {
     }
 }
 
-const restartTheGame = () => {
-    timer.innerHTML = ""
-    timer.style.color = 'black'
-    currentTime = 20
-    createPlayBtn()
-    section.style.pointerEvents = 'none'
-    let cardData = getRandomItems();
-    let cards = document.querySelectorAll('.card')
-    let backs = document.querySelectorAll('.back')
-    const imageData = document.querySelectorAll('.image')
 
-    cardData.forEach((item, index) => {
-        backs[index].classList.remove('toggleBack');
-        cards[index].id = item.id
-        imageData[index].src = item.imgSrc;
-        cards[index].style.pointerEvents = "all"
-    })
-    
-}
-
-restart.addEventListener(("click"), ()=> {
-    restartTheGame()
-})
 
 
