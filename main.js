@@ -28,7 +28,7 @@ const data = [
     {imgSrc: "./images/8.jpg", id: 8}
 ]
 
-let currentTime = 50;
+let currentTime = 25;
 function updateTimer() {
     const foldCard = document.querySelectorAll('.back');
     const data = Object.values(foldCard)
