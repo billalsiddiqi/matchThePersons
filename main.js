@@ -28,12 +28,25 @@ const data = [
     {imgSrc: "./images/8.jpg", id: 8}
 ]
 
-let currentTime = 25;
+let currentTime = 50;
 function updateTimer() {
+    const foldCard = document.querySelectorAll('.back');
+    const data = Object.values(foldCard)
+    
     const interval =  setInterval(()=>{
         const distance = currentTime - 1;
         currentTime = distance
-        timer.innerHTML = distance
+        timer.innerHTML = distance 
+
+        const result = data.every((e) => {
+            return e.classList.contains("toggleBack")
+        })
+        if(result){
+            clearInterval(interval);
+            timer.innerHTML = "Congratulations"
+            timer.style.color = 'green'
+        }
+
         if(distance < 0){
             clearInterval(interval);
             timer.innerHTML = "Game Over!"
